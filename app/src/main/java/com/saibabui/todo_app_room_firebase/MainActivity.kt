@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.saibabui.todo_app_room_firebase.dashboard.DashBoardScreen
 import com.saibabui.todo_app_room_firebase.ui.theme.TodoAppRoomFirebaseTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,12 +19,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            TodoAppRoomFirebaseTheme {
+            TodoAppRoomFirebaseTheme(darkTheme = false) {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    val modifier = Modifier
+                        .fillMaxSize().padding(innerPadding)
+                        DashBoardScreen(modifier)
                 }
             }
         }
