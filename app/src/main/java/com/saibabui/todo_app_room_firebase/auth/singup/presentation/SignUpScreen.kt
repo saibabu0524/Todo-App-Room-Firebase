@@ -32,23 +32,25 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.saibabui.todo_app_room_firebase.R
 import com.saibabui.todo_app_room_firebase.ui.theme.TodoAppRoomFirebaseTheme
 import com.saibabui.todo_app_room_firebase.ui.theme.bodyFontFamily
 import com.saibabui.todo_app_room_firebase.ui.theme.boldTitle
 
 @Composable
-fun SignUpScreen() {
+fun SignUpScreen(navController: NavController) {
     Scaffold { innerPadding ->
         val modifier = Modifier
-            .fillMaxHeight()
+            .fillMaxSize()
             .padding(innerPadding)
-        Box(modifier.verticalScroll(rememberScrollState()).padding(top = 50.dp)) {
+        Box(modifier.verticalScroll(rememberScrollState())) {
             Image(
                 painter = painterResource(id = R.drawable.two_circle_shape),
                 contentDescription = "custom shape",
@@ -58,12 +60,12 @@ fun SignUpScreen() {
                     .offset((-96).dp, (-94).dp)
 
             )
-            Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            Column(verticalArrangement = Arrangement.spacedBy(24.dp), modifier = Modifier.fillMaxSize()) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
-                        .fillMaxHeight().padding(vertical = 50.dp),
-                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                        .fillMaxSize().padding(vertical = 50.dp),
+                    verticalArrangement = Arrangement.spacedBy(24.dp)
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier.padding(bottom = 16.dp)) {
@@ -73,7 +75,8 @@ fun SignUpScreen() {
                             fontSize = MaterialTheme.typography.titleLarge.fontSize,
                             fontFamily = boldTitle,
                             color = MaterialTheme.colorScheme.onSurface,
-                            textAlign = TextAlign.Center
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.padding(top = 20.dp),
                         )
                         Text(
                             text = "Lets help you in completing your tasks",
@@ -92,7 +95,7 @@ fun SignUpScreen() {
                     CustomInputComponent()
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         Button(
-                            onClick = { /*TODO*/ },
+                            onClick = { navController.navigate("login") },
                             shape = RoundedCornerShape(10.dp),
                             modifier = Modifier
                                 .padding(horizontal = 20.dp).
@@ -174,7 +177,7 @@ fun CustomInputComponent(modifier: Modifier = Modifier) {
 @Composable
 private fun SignUpScreenPreview() {
     TodoAppRoomFirebaseTheme {
-        SignUpScreen()
+        SignUpScreen(NavController(LocalContext.current))
     }
 }
 

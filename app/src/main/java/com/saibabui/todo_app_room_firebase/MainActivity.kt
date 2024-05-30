@@ -14,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.saibabui.todo_app_room_firebase.auth.login.presentation.LoginScreen
 import com.saibabui.todo_app_room_firebase.auth.singup.presentation.SignUpScreen
 import com.saibabui.todo_app_room_firebase.dashboard.DashBoardScreen
 import com.saibabui.todo_app_room_firebase.ui.theme.TodoAppRoomFirebaseTheme
@@ -25,10 +26,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             TodoAppRoomFirebaseTheme() {
                 val navController = rememberNavController()
-
                 NavHost(navController, startDestination = "dashboard") {
                     composable("dashboard") { DashBoardScreen(navController) }
-                    composable("signup") { SignUpScreen() }
+                    composable("signup") { SignUpScreen(navController) }
+                    composable("login") {
+                        LoginScreen()
+                    }
                 }
             }
         }

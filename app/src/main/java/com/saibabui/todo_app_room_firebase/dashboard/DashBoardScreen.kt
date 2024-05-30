@@ -54,7 +54,7 @@ fun DashBoardScreen(navController: NavController) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.fillMaxSize().padding(top = 100.dp, bottom = 50.dp),
-                    verticalArrangement = Arrangement.SpaceEvenly
+                    verticalArrangement = Arrangement.spacedBy(100.dp)
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.dashboard_user_with_mobile_icon),
@@ -64,7 +64,7 @@ fun DashBoardScreen(navController: NavController) {
                             .height(250.dp).alpha(0.8f)
                     )
                     Column(horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier.fillMaxWidth().padding(top = 100.dp)) {
+                        modifier = Modifier.fillMaxWidth()) {
                         Text(
                             text = "Get things done with TODO",
                             style = MaterialTheme.typography.titleMedium,
@@ -89,9 +89,7 @@ fun DashBoardScreen(navController: NavController) {
                         onClick = { navController.navigate("signup") },
                         shape = RoundedCornerShape(10.dp),
                         modifier = Modifier
-                            .padding(horizontal = 20.dp).padding(
-                                top = 100.dp
-                            )
+                            .padding(horizontal = 20.dp)
                             .fillMaxWidth()
                             .height(50.dp)
                             .alpha(0.8f)
